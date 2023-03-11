@@ -5,7 +5,8 @@ import { styles } from "lib/styles";
 import { Canvas } from "@react-three/fiber";
 
 import Experience from "components/Experience";
-import { Loader } from "@react-three/drei";
+import { Html, Loader } from "@react-three/drei";
+import { Suspense } from "react";
 
 export default function App({ Component, pageProps }) {
 	return (
@@ -16,7 +17,9 @@ export default function App({ Component, pageProps }) {
 				camera={{ fov: 75 }}
 				style={{ ...styles }}
 			>
-				<Experience />
+				<Suspense fallback={<Html>...loading</Html>}>
+					<Experience />
+				</Suspense>
 			</Canvas>
 			<Loader />
 			<Component {...pageProps} />
