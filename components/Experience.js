@@ -80,6 +80,7 @@ export default function Experience() {
 				maxDistance={viewInside ? Infinity : 10}
 				makeDefault
 				enableZoom={viewInside ? false : true}
+				enablePan={false}
 				target={[0, -2, 0]}
 			/>
 			<Effects />
