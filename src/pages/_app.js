@@ -5,6 +5,7 @@ import { styles } from "lib/styles";
 import { Canvas } from "@react-three/fiber";
 
 import Experience from "components/Experience";
+import { Loader } from "@react-three/drei";
 
 export default function App({ Component, pageProps }) {
 	return (
@@ -17,6 +18,7 @@ export default function App({ Component, pageProps }) {
 			>
 				<Experience />
 			</Canvas>
+			<Loader />
 			<Component {...pageProps} />
 		</>
 	);
