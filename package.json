@@ -10,10 +10,21 @@
   },
   "dependencies": {
     "@next/font": "13.1.6",
+    "@react-three/drei": "^9.56.25",
+    "@react-three/fiber": "^8.9.1",
+    "@react-three/postprocessing": "^2.7.0",
+    "@react-three/rapier": "^0.13.2",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
+    "gltfjsx": "^6.1.4",
+    "gsap": "^3.11.4",
+    "leva": "^0.9.34",
     "next": "13.1.6",
+    "postprocessing": "^6.29.3",
+    "r3f-perf": "^7.1.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "three": "^0.148.0",
+    "zustand": "^4.3.3"
   }
 }
