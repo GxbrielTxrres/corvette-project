@@ -5,9 +5,7 @@ import Effects from "./Effects";
 
 import gsap from "gsap";
 
-import { Corvette } from "components/Corvette";
 import { useDonutStore } from "store/PhysicsStore";
-
 import {
 	Grid,
 	Environment,
@@ -17,6 +15,7 @@ import {
 import { useThree } from "@react-three/fiber";
 
 import { useEffect, useLayoutEffect, useRef } from "react";
+import { Model } from "./Corvette2";
 
 export default function Experience() {
 	const { viewInside, customize } = useDonutStore();
@@ -72,6 +71,7 @@ export default function Experience() {
 
 	return (
 		<group>
+			<Model position={[0, -2, 0]} />
 			<OrbitControls
 				ref={controls}
 				maxPolarAngle={viewInside ? Math.PI : Math.PI / 2.25}
@@ -84,9 +84,8 @@ export default function Experience() {
 			/>
 			<Effects />
 
-			<Corvette position={[0, -2, 0]} />
-			<Lights />
 			<Floor />
+			<Lights />
 			<Grid
 				renderOrder={-1}
 				position={[0, -1.96, 0]}
