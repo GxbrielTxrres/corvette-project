@@ -23,5 +23,15 @@ export const useDonutStore = create((set) => ({
 		set((state) => ({ customize: !state.customize }));
 	},
 
+	about: false,
+	setAbout: () => {
+		set((state) => ({ about: !state.about }));
+	},
+
+	steps: false,
+	setSteps: () => {
+		set((state) => ({ steps: !state.steps }));
+	},
+
 	color: { r: 1, g: 0, b: 0 },
 }));

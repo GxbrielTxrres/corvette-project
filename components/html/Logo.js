@@ -7,6 +7,7 @@ export default function Logo() {
 		<div className={styles.Logo}>
 			<div className={styles.log}>
 				<Image
+					alt=""
 					style={{
 						marginTop: ".8rem",
 						marginBottom: ".8rem",

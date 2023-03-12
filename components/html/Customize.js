@@ -6,13 +6,8 @@ export default function Customize() {
 
 	return (
 		<footer>
-			<div
-				onClick={() => {
-					setCustomize();
-				}}
-				className={styles.customizeText}
-			>
-				<span class="material-symbols-outlined">handyman</span>
+			<div onClick={setCustomize} className={styles.customizeText}>
+				<span className="material-symbols-outlined">handyman</span>
 				<button
 					style={{
 						margin: "0 0.4rem",

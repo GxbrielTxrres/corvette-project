@@ -1,106 +1,99 @@
-import Image from "next/image";
-import styles from "../../src/styles/Home.module.css";
-
 import { colorData } from "lib/Data";
 import { useDonutStore } from "store/PhysicsStore";
 
-import { Html } from "@react-three/drei";
-import { useRef, useState } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
+import { Color } from "three";
+import { useFrame, useThree } from "@react-three/fiber";
+
+import gsap from "gsap";
 
 export default function CustomizeInterface() {
-	return (
-		<>
-			<Exterior />
-		</>
-	);
-}
-
-function Exterior() {
-	const setCustomize = useDonutStore((state) => state.setCustomize);
-
-	const [hidden, set] = useState();
 	const html = useRef();
+	const spheres = useRef([]);
+
+	const { viewInside, setViewInside } = useDonutStore();
+
+	const [hovered, setHovered] = useState(false);
+
+	const { camera } = useThree();
+
+	useEffect(() => {
+		if (viewInside) {
+			setViewInside();
+		}
+		document.body.style.cursor = hovered ? "pointer" : "auto";
+	}, [hovered]);
+
+	useLayoutEffect(() => {
+		gsap.to(camera.position, {
+			x: -9.85,
+			y: -0.263,
+			z: 0.06,
+			duration: 2,
+			ease: "power2.out",
+		});
+	}, []);
 
 	useFrame(({ camera }) => {
-		if (camera.position.x > 0) {
-			set(true);
+		if (camera.position.x > html.current.position.x) {
+			for (const sphere of html.current.children) {
+				gsap.to(sphere.material, {
+					opacity: 0,
+					duration: 1,
+					ease: "power.out",
+				});
+			}
 		} else {
-			set(false);
-			html.current.lookAt(camera.position);
+			for (const sphere of html.current.children) {
+				gsap.to(sphere.material, {
+					opacity: 1,
+					duration: 2,
+					ease: "power.in",
+				});
+			}
 		}
 	});
 
-	const links = [
-		"/arctic-white.jpg",
-		"/hypersonic.jpg",
-		"/black.jpg",
-		"/red-mist.jpg",
-		"/acc-yellow.jpg",
-		"/rapid-blue.jpg",
-	];
-
 	return (
-		<group ref={html}>
-			<Html
-				className={styles.threedHtml}
-				transform
-				center
-				scale={0.2}
-				occlude
-				onOcclude={set}
-				style={{
-					transition: "all 0.5s",
-					opacity: hidden ? 0 : 1,
-					transform: `scale(${hidden ? 0.5 : 1})`,
-				}}
-			>
-				<h1>Exterior Colors</h1>
-				<div className={styles.colorPickerContainer}>
-					{colorData.map((data, index) => {
-						return (
-							<div
-								key={index}
-								onClick={() => {
-									useDonutStore.setState({
-										color: data.color,
-									});
-								}}
-								className={styles.carColorAndText}
-							>
-								<Image
-									height={75}
-									width={175}
-									src={links[index]}
-									alt="Car Color"
-								/>
-								<p style={{ textAlign: "center" }}>
-									{data.text}
-								</p>
-							</div>
-						);
-					})}
-				</div>
-				<div
-					style={{
-						margin: "1rem auto",
-						width: "50%",
-						display: "flex",
-						alignContent: "right",
-						justifyContent: "right",
-					}}
-				>
-					<span
-						onClick={() => {
-							setCustomize();
+		<group
+			position={[-1.2, 0.07, -0.9]}
+			rotation-y={-Math.PI / 2}
+			ref={html}
+			onPointerOver={() => setHovered(true)}
+			onPointerOut={() => setHovered(false)}
+		>
+			{colorData.map((data, index) => {
+				return (
+					<mesh
+						ref={(element) => {
+							spheres.current[index] = element;
 						}}
-						style={{ fontSize: "4rem" }}
-						className="material-symbols-outlined"
+						castShadow
+						key={index}
+						scale={0.4}
+						position={[index * 0.4, -0.5, index * 0.02]}
+						onClick={() => {
+							useDonutStore.setState({
+								color: data.color,
+							});
+						}}
 					>
-						arrow_forward
-					</span>
-				</div>
-			</Html>
+						<sphereGeometry args={[0.35]} />
+						<meshStandardMaterial
+							transparent
+							opacity={0}
+							metalness={0}
+							roughness={0.1}
+							color={new Color(
+								data.color.r,
+								data.color.g,
+								data.color.b,
+							).convertSRGBToLinear()}
+							envMapIntensity={0.3}
+						/>
+					</mesh>
+				);
+			})}
 		</group>
 	);
 }

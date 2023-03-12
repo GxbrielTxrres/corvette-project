@@ -1,6 +1,7 @@
 import styles from "../../src/styles/Home.module.css";
-
+import { useDonutStore } from "store/PhysicsStore";
 export default function Backgrounds() {
+	const { setAbout, setCustomize, setSteps, steps } = useDonutStore();
 	return (
 		<div className={styles.Bgb}>
 			<div
@@ -8,10 +9,16 @@ export default function Backgrounds() {
 				className={styles.BlackBg}
 			></div>
 
-			<div className={styles.Summary}>
+			<div
+				onClick={() => {
+					setAbout();
+					setCustomize();
+				}}
+				className={styles.Summary}
+			>
 				<span
 					style={{ marginRight: ".3rem" }}
-					class="material-symbols-outlined"
+					className="material-symbols-outlined"
 				>
 					list
 				</span>
@@ -19,12 +26,16 @@ export default function Backgrounds() {
 			</div>
 
 			<div
+				onClick={() => {
+					setSteps();
+					setCustomize();
+				}}
 				style={{ backgroundColor: "#262626" }}
 				className={styles.Steps}
 			>
 				<span
 					style={{ marginRight: ".3rem" }}
-					class="material-symbols-outlined"
+					className="material-symbols-outlined"
 				>
 					skip_next
 				</span>

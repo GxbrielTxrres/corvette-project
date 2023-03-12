@@ -23,10 +23,6 @@ export default function Experience() {
 	const { camera } = useThree();
 	const controls = useRef();
 
-	useEffect(() => {
-		camera.position.set(0, 0, -5);
-	}, []);
-
 	useLayoutEffect(() => {
 		if (viewInside === true) {
 			gsap.to(camera.position, {
@@ -49,11 +45,11 @@ export default function Experience() {
 			camera.updateProjectionMatrix();
 		} else if (viewInside === false) {
 			gsap.to(camera.position, {
-				x: 0,
-				y: 0,
-				z: -10,
+				x: -9.85,
+				y: -0.263,
+				z: 0.06,
 				duration: 2,
-				ease: "easeOut",
+				ease: "power.out",
 			});
 
 			gsap.to(controls.current.target, {

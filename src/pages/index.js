@@ -3,10 +3,22 @@ import styles from "@/styles/Home.module.css";
 
 import { useDonutStore } from "store/PhysicsStore";
 import Interface from "components/html/Interface";
+import About from "components/html/About";
+import Contact from "components/html/Contact";
 
 export default function Home() {
-	const { customize, setCustomize, color } = useDonutStore();
+	const { customize, setCustomize, about, setAbout, steps, setSteps } =
+		useDonutStore();
+	function handleClick() {
+		setCustomize();
+		if (about === true) {
+			setAbout();
+		}
 
+		if (steps === true) {
+			setSteps();
+		}
+	}
 	return (
 		<>
 			<Head>
@@ -35,7 +47,7 @@ export default function Home() {
 				<link
 					rel="preconnect"
 					href="https://fonts.gstatic.com"
-					crossorigin
+					crossOrigin
 				/>
 				<link
 					href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap"
@@ -52,9 +64,12 @@ export default function Home() {
 			</Head>
 			<main>
 				<div className={styles.container}>
-					{customize === false ? (
-						<Interface />
-					) : (
+					<Interface />
+
+					{about && <About />}
+					{steps && <Contact />}
+
+					{customize && (
 						<button
 							className={styles.customizeBtn}
 							style={{
@@ -67,9 +82,9 @@ export default function Home() {
 								outline: "unset",
 								border: "unset",
 							}}
-							onClick={setCustomize}
+							onClick={handleClick}
 						>
-							Home
+							Back
 						</button>
 					)}
 				</div>
