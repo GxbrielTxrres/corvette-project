@@ -31,6 +31,15 @@ function Exterior() {
 		}
 	});
 
+	const links = [
+		"/arctic-white.jpg",
+		"/hypersonic.jpg",
+		"/black.jpg",
+		"/red-mist.jpg",
+		"/acc-yellow.jpg",
+		"/rapid-blue.jpg",
+	];
+
 	return (
 		<group ref={html}>
 			<Html
@@ -63,7 +72,7 @@ function Exterior() {
 									height={75}
 									width={175}
 									style={{ objectFit: "fill" }}
-									src={data.link}
+									src={links[index]}
 									alt="Car Color"
 								/>
 								<p style={{ textAlign: "center" }}>
