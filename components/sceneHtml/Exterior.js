@@ -60,6 +60,7 @@ function Exterior() {
 								className={styles.carColorAndText}
 							>
 								<Image
+									fill
 									height={75}
 									width={175}
 									src={data.link}
