@@ -14,7 +14,7 @@ export default function About() {
 		<div ref={about} style={{ opacity: 0 }}>
 			<Image
 				alt=""
-				width={400}
+				width="auto"
 				height="auto"
 				style={{
 					position: "absolute",
