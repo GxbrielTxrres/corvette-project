@@ -2,12 +2,12 @@ import Image from "next/image";
 import corvette from "../../public/aboutCorv.jpg";
 import styles from "../../src/styles/Home.module.css";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 export default function About() {
 	const about = useRef();
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		gsap.to(about.current, { opacity: 1, duration: 2, ease: "power.out" });
 	}, []);
 	return (

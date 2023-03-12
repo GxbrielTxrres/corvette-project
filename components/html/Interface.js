@@ -11,8 +11,8 @@ export default function Interface() {
 		if (customize === false) {
 			return (
 				<>
-					<Logo />
 					<Backgrounds />
+					<Logo />
 					<SceneButtons />
 					<Customize />
 				</>
