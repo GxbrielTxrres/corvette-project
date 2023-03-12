@@ -71,11 +71,6 @@ function Exterior() {
 								<Image
 									height={75}
 									width={175}
-									style={{
-										objectFit: "fill",
-										height: "auto",
-										width: "auto",
-									}}
 									src={links[index]}
 									alt="Car Color"
 								/>
