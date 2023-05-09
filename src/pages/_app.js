@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
 			<Canvas
 				shadows
 				gl={{ antialias: false }}
-				camera={{ fov: 75, position: [7.5, 0, -5] }}
+				camera={{ fov: 85, position: [7.5, 0, -5] }}
 				style={{ ...styles }}
 			>
 				<Suspense fallback={<Html>...loading</Html>}>

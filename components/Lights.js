@@ -39,6 +39,7 @@ export default function Lights() {
 				position={[-2, 1, -0.5]}
 				args={["#ffffff", 0.9, 20, 1, 1, 1]}
 			/>
+			<ambientLight intensity={0.01} />
 		</group>
 	);
 }

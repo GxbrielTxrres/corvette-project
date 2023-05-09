@@ -44,9 +44,9 @@ export function Model(props) {
 		scene.traverse((nodes) => {
 			if (nodes.isMesh && nodes.name.length === 0) {
 				nodes.castShadow = true;
-				nodes.material.envMapIntensity = 0.5;
+				nodes.material.envMapIntensity = 0.7;
 			} else if (nodes.isMesh && nodes.name.length > 0) {
-				nodes.material.envMapIntensity = 1.2;
+				nodes.material.envMapIntensity = 0;
 				nodes.material.roughness = 0.8;
 				nodes.material.metalness = 0.8;
 			}

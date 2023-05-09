@@ -11,8 +11,9 @@ import {
 	Environment,
 	Lightformer,
 	OrbitControls,
+	SoftShadows,
 } from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { Model } from "./Corvette2";
@@ -21,6 +22,7 @@ export default function Experience() {
 	const { viewInside, customize } = useDonutStore();
 
 	const { camera } = useThree();
+	const { width, height } = useThree((state) => state.viewport);
 	const controls = useRef();
 
 	useLayoutEffect(() => {
@@ -71,7 +73,7 @@ export default function Experience() {
 			<OrbitControls
 				ref={controls}
 				maxPolarAngle={viewInside ? Math.PI : Math.PI / 2.25}
-				minPolarAngle={viewInside ? 0 : Math.PI / 2.25}
+				minPolarAngle={viewInside ? 0 : -Math.PI}
 				minDistance={viewInside ? 0 : 5}
 				maxDistance={viewInside ? Infinity : 10}
 				makeDefault
@@ -94,7 +96,7 @@ export default function Experience() {
 				sectionColor={[5, 5, 5]}
 				fadeDistance={12}
 			/>
-
+			<SoftShadows />
 			{customize && <CustomizeInterface />}
 
 			<Environment
@@ -105,9 +107,9 @@ export default function Experience() {
 				preset="night"
 			>
 				<Lightformer
-					position={[1.21, 0, 0]}
+					position={[1.21, 2, 1]}
 					color="#0a0a0a"
-					intensity={20}
+					intensity={200}
 					form="circle"
 				/>
 
@@ -115,8 +117,8 @@ export default function Experience() {
 					position={[0, -0.03, 2]}
 					target={[0, 0, -4]}
 					scale={[1, 1, 1]}
-					color="#51556f"
-					intensity={1.8}
+					color="#000000"
+					intensity={0.5}
 					form="circle"
 				/>
 				<Lightformer

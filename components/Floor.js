@@ -76,6 +76,7 @@ function Cube() {
 				displacementScale={0.05}
 				roughnessMap={roughTexture}
 				roughness={4}
+				color="silver"
 				side={BackSide}
 			/>
 		</mesh>
