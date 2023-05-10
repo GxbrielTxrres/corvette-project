@@ -70,7 +70,6 @@ export default function Experience() {
 
 	return (
 		<group>
-			<Perf />
 			<Model position={[0, -2, 0]} />
 			<OrbitControls
 				ref={controls}

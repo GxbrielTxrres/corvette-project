@@ -33,11 +33,7 @@ export default function Effects() {
 				inverted
 				blendFunction={BlendFunction.DARKEN}
 			/> */}
-			<DepthOfField
-				focalLength={0.01}
-				focusDistance={0.05}
-				bokehScale={2}
-			/>
+			<DepthOfField focalLength={10} focusDistance={8} bokehScale={2} />
 		</EffectComposer>
 	);
 }
