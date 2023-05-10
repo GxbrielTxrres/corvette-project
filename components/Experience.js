@@ -17,6 +17,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { Model } from "./Corvette2";
+import { Perf } from "r3f-perf";
 
 export default function Experience() {
 	const { viewInside, customize } = useDonutStore();
@@ -69,6 +70,7 @@ export default function Experience() {
 
 	return (
 		<group>
+			<Perf />
 			<Model position={[0, -2, 0]} />
 			<OrbitControls
 				ref={controls}
@@ -99,13 +101,7 @@ export default function Experience() {
 			<SoftShadows />
 			{customize && <CustomizeInterface />}
 
-			<Environment
-				frames={1}
-				near={1}
-				far={100}
-				resolution={256}
-				preset="night"
-			>
+			<Environment frames={1} resolution={256} preset="night">
 				<Lightformer
 					position={[1.21, 2, 1]}
 					color="#0a0a0a"

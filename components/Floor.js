@@ -34,7 +34,7 @@ export default function Floor() {
 					displacementScale={0.2}
 					roughnessMap={roughTexture}
 					roughness={3}
-					metalness={0.8}
+					metalness={1}
 				/>
 			</mesh>
 		</group>
