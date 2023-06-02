@@ -100,7 +100,11 @@ export default function Experience() {
 			<SoftShadows />
 			{customize && <CustomizeInterface />}
 
-			<Environment frames={1} resolution={256} preset="night">
+			<Environment
+				frames={1}
+				resolution={256}
+				files="/dikhololo_night_1k.hdr"
+			>
 				<Lightformer
 					position={[1.21, 2, 1]}
 					color="#0a0a0a"
