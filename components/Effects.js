@@ -25,11 +25,11 @@ export default function Effects() {
 			/>
 			<Autofocus
 				mouse
-				focusRange={0.01}
+				focusRange={0.0125}
 				resolutionScale={0.4}
-				bokehScale={7}
+				bokehScale={5}
 			/>
-			<BrightnessContrast brightness={0.01} contrast={0.1} />
+			<BrightnessContrast brightness={0.05} contrast={0.025} />
 		</EffectComposer>
 	);
 }
