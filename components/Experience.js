@@ -15,7 +15,7 @@ import {
 } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Model } from "./Corvette2";
 import { Perf } from "r3f-perf";
 
@@ -23,7 +23,7 @@ export default function Experience() {
 	const { viewInside, customize } = useDonutStore();
 
 	const { camera } = useThree();
-	const { width, height } = useThree((state) => state.viewport);
+	const [setFov] = useState(window.innerWidth);
 	const controls = useRef();
 
 	useLayoutEffect(() => {
@@ -44,8 +44,7 @@ export default function Experience() {
 				ease: "easeOut",
 			});
 
-			camera.fov = 55;
-			camera.updateProjectionMatrix();
+			camera.fov = 65;
 		} else if (viewInside === false) {
 			gsap.to(camera.position, {
 				x: -9.85,
@@ -64,8 +63,13 @@ export default function Experience() {
 			});
 		}
 
-		camera.fov = 35;
-		camera.updateProjectionMatrix();
+		if (setFov >= 1000 && viewInside === false) {
+			camera.fov = 35;
+			camera.updateProjectionMatrix();
+		} else if (setFov < 1000 && viewInside === false) {
+			camera.fov = 75;
+			camera.updateProjectionMatrix();
+		}
 	}, [viewInside]);
 
 	return (
@@ -76,7 +80,7 @@ export default function Experience() {
 				maxPolarAngle={viewInside ? Math.PI : Math.PI / 2.25}
 				minPolarAngle={viewInside ? 0 : -Math.PI}
 				minDistance={viewInside ? 0 : 5}
-				maxDistance={viewInside ? Infinity : 10}
+				maxDistance={viewInside ? Infinity : 8}
 				makeDefault
 				enableZoom={viewInside ? false : true}
 				enablePan={false}
