@@ -41,26 +41,18 @@ export function Model(props) {
 
 	const { scene } = useThree();
 
-	const { envMapIntensity, sceneEnvIntensity, roughness, metalness } =
-		useControls("Car", {
-			envMapIntensity: { value: 1.5, min: 0, max: 10, step: 0.1 },
-			sceneEnvIntensity: { value: 0.7, min: 0, max: 10, step: 0.1 },
-			roughness: { value: 0.7, min: 0, max: 10, step: 0.01 },
-			metalness: { value: 0.7, min: 0, max: 10, step: 0.01 },
-		});
-
 	useEffect(() => {
 		scene.traverse((nodes) => {
 			if (nodes.isMesh && nodes.name.length === 0) {
 				nodes.castShadow = true;
-				nodes.material.envMapIntensity = sceneEnvIntensity;
+				nodes.material.envMapIntensity = 1;
 			} else if (nodes.isMesh && nodes.name.length > 0) {
 				nodes.material.envMapIntensity = 0.2;
 			}
 		});
 
 		ColorFade(roof, color);
-	}, [color, sceneEnvIntensity, roughness, metalness]);
+	}, [color]);
 
 	useLayoutEffect(() => {
 		if (open === false) {
@@ -82,17 +74,17 @@ export function Model(props) {
 
 	useEffect(() => {
 		Object.values(materials).forEach((material) => {
-			material.envMapIntensity = envMapIntensity;
+			material.envMapIntensity = 1.4;
 			console.log(material.name);
 			if (
 				material.name !== "Tire_Treads" ||
 				material.name !== "Tire_Sidewall"
 			) {
-				material.roughness = roughness;
-				material.metalness = metalness;
+				material.roughness = 0.1;
+				material.metalness = 0.33;
 			}
 		});
-	}, [envMapIntensity, metalness, roughness]);
+	}, []);
 
 	return (
 		<group {...props} dispose={null}>
