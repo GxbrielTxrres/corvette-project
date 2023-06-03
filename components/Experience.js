@@ -80,7 +80,7 @@ export default function Experience() {
 				maxPolarAngle={viewInside ? Math.PI : Math.PI / 2.25}
 				minPolarAngle={viewInside ? 0 : -Math.PI}
 				minDistance={viewInside ? 0 : 5}
-				maxDistance={viewInside ? Infinity : 8}
+				maxDistance={viewInside ? Infinity : 7.5}
 				makeDefault
 				enableZoom={viewInside ? false : true}
 				enablePan={false}
