@@ -19,7 +19,9 @@ export default function Effects() {
 		autoEnabled: true,
 		aoEnabled: false,
 		brightness: { value: 0.05, min: 0, max: 1, step: 0.01 },
+
 		contrast: { value: 0.05, min: 0, max: 1, step: 0.01 },
+		bokehScale: { value: 6, min: 0, max: 50, step: 0.1 },
 		resScale: { value: 0.4, min: 0, max: 1, step: 0.01 },
 		aoRadius: { value: 0.2, min: 0, max: 10, step: 0.1 },
 		denoiseRadius: { value: 0.2, min: 0, max: 10, step: 0.1 },
@@ -42,7 +44,7 @@ export default function Effects() {
 					mouse
 					focusRange={0.0125}
 					resolutionScale={resScale}
-					bokehScale={5}
+					bokehScale={bokehScale}
 				/>
 			)}
 			<BrightnessContrast brightness={brightness} contrast={contrast} />
