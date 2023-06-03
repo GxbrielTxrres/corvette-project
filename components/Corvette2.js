@@ -20,6 +20,7 @@ import {
 	ConvertibleUp,
 } from "lib/Utils";
 import { useThree } from "@react-three/fiber";
+import { useControls } from "leva";
 
 const white = new Color(5, 5, 5);
 const emissiveWhite = new Color(3, 3, 3);
@@ -40,20 +41,26 @@ export function Model(props) {
 
 	const { scene } = useThree();
 
+	const { envMapIntensity, sceneEnvIntensity, roughness, metalness } =
+		useControls("Car", {
+			envMapIntensity: { value: 1.5, min: 0, max: 10, step: 0.1 },
+			sceneEnvIntensity: { value: 0.7, min: 0, max: 10, step: 0.1 },
+			roughness: { value: 0.7, min: 0, max: 10, step: 0.01 },
+			metalness: { value: 0.7, min: 0, max: 10, step: 0.01 },
+		});
+
 	useEffect(() => {
 		scene.traverse((nodes) => {
 			if (nodes.isMesh && nodes.name.length === 0) {
 				nodes.castShadow = true;
-				nodes.material.envMapIntensity = 0.7;
+				nodes.material.envMapIntensity = sceneEnvIntensity;
 			} else if (nodes.isMesh && nodes.name.length > 0) {
 				nodes.material.envMapIntensity = 0.2;
-				nodes.material.roughness = 0.8;
-				nodes.material.metalness = 0.8;
 			}
 		});
 
 		ColorFade(roof, color);
-	}, [color]);
+	}, [color, sceneEnvIntensity, roughness, metalness]);
 
 	useLayoutEffect(() => {
 		if (open === false) {
@@ -75,9 +82,17 @@ export function Model(props) {
 
 	useEffect(() => {
 		Object.values(materials).forEach((material) => {
-			material.envMapIntensity = 1.5;
+			material.envMapIntensity = envMapIntensity;
+			console.log(material.name);
+			if (
+				material.name !== "Tire_Treads" ||
+				material.name !== "Tire_Sidewall"
+			) {
+				material.roughness = roughness;
+				material.metalness = metalness;
+			}
 		});
-	}, []);
+	}, [envMapIntensity, metalness, roughness]);
 
 	return (
 		<group {...props} dispose={null}>
