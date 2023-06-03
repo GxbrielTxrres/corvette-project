@@ -29,6 +29,7 @@ export default function Effects() {
 				resolutionScale={0.4}
 				bokehScale={5}
 			/>
+			<SSR />
 			<BrightnessContrast brightness={0.05} contrast={0.025} />
 		</EffectComposer>
 	);
