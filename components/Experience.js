@@ -126,12 +126,12 @@ export default function Experience() {
 					form="circle"
 				/>
 				<Lightformer
-					position={[3.17, 0.96, 0]}
-					target={[0, -2.19, 0]}
+					position={[2, -1, 0]}
+					target={[0, -2, 0]}
 					scale={[1, 1, 1]}
 					color="#ffffff"
-					intensity={1.73}
-					form="ring"
+					intensity={1}
+					form="circle"
 				/>
 
 				<Lightformer
