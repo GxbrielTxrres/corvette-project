@@ -62,7 +62,9 @@ export default function Experience() {
 				ease: "easeOut",
 			});
 		}
+	}, [viewInside]);
 
+	useLayoutEffect(() => {
 		if (setFov >= 1000 && viewInside === false) {
 			camera.fov = 35;
 			camera.updateProjectionMatrix();
@@ -70,10 +72,10 @@ export default function Experience() {
 			camera.fov = 65;
 			camera.updateProjectionMatrix();
 		}
-	}, [viewInside]);
+	}, []);
 
 	return (
-		<group>
+		<>
 			<Perf />
 			<Model position={[0, -2, 0]} />
 			<OrbitControls
@@ -99,7 +101,7 @@ export default function Experience() {
 				cellThickness={0.2}
 				sectionSize={3}
 				sectionThickness={0.8}
-				sectionColor={[0.1, 0.1, 0.1]}
+				sectionColor={[5, 5, 5]}
 				fadeDistance={12}
 			/>
 			<SoftShadows />
@@ -157,6 +159,6 @@ export default function Experience() {
 					form="circle"
 				/>
 			</Environment>
-		</group>
+		</>
 	);
 }
