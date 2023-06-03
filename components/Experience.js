@@ -111,6 +111,7 @@ export default function Experience() {
 				frames={1}
 				resolution={256}
 				files="/dikhololo_night_1k.hdr"
+				preset="night"
 			>
 				<Lightformer
 					position={[1.21, 2, 1]}
