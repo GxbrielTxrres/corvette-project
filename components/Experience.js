@@ -67,7 +67,7 @@ export default function Experience() {
 			camera.fov = 35;
 			camera.updateProjectionMatrix();
 		} else if (setFov < 1000 && viewInside === false) {
-			camera.fov = 75;
+			camera.fov = 65;
 			camera.updateProjectionMatrix();
 		}
 	}, [viewInside]);
@@ -99,7 +99,7 @@ export default function Experience() {
 				cellThickness={0.2}
 				sectionSize={3}
 				sectionThickness={0.8}
-				sectionColor={[5, 5, 5]}
+				sectionColor={[0.1, 0.1, 0.1]}
 				fadeDistance={12}
 			/>
 			<SoftShadows />
@@ -127,10 +127,10 @@ export default function Experience() {
 				/>
 				<Lightformer
 					position={[2, -1, 0]}
-					target={[0, -2, 0]}
-					scale={[1, 1, 1]}
+					target={[0, -3, 0]}
+					scale={0.2}
 					color="#ffffff"
-					intensity={1}
+					intensity={2}
 					form="circle"
 				/>
 

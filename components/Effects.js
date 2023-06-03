@@ -9,6 +9,8 @@ import {
 	BrightnessContrast,
 	Noise,
 	Autofocus,
+	ToneMapping,
+	N8AO,
 } from "@react-three/postprocessing";
 import { useControls } from "leva";
 import { BlendFunction } from "postprocessing";
@@ -23,13 +25,19 @@ export default function Effects() {
 				luminanceThreshold={0.3}
 				luminanceSmoothing={0.4}
 			/>
-			<Autofocus
+			{/* <Autofocus
 				mouse
 				focusRange={0.0125}
 				resolutionScale={0.4}
 				bokehScale={5}
+			/> */}
+			<BrightnessContrast brightness={0.05} contrast={0} />
+			<N8AO
+				aoRadius={0.2}
+				intensity={10}
+				denoiseRadius={1}
+				quality="high"
 			/>
-			<BrightnessContrast brightness={0.05} contrast={0.025} />
 		</EffectComposer>
 	);
 }

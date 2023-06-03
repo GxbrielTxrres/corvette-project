@@ -47,7 +47,7 @@ export function Model(props) {
 				nodes.material.envMapIntensity = 0.7;
 			} else if (nodes.isMesh && nodes.name.length > 0) {
 				nodes.material.envMapIntensity = 0.2;
-				nodes.material.roughness = 1.5;
+				nodes.material.roughness = 0.8;
 				nodes.material.metalness = 0.8;
 			}
 		});
@@ -75,7 +75,6 @@ export function Model(props) {
 
 	useEffect(() => {
 		Object.values(materials).forEach((material) => {
-			console.log(material.envMapIntensity);
 			material.envMapIntensity = 1.5;
 		});
 	}, []);
