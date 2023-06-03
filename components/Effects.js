@@ -14,6 +14,7 @@ export default function Effects() {
 		contrast,
 		autoEnabled,
 		aoEnabled,
+		bokehScale,
 		...aoProps
 	} = useControls("Effects", {
 		autoEnabled: true,
