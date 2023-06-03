@@ -3,22 +3,18 @@ import { useEffect, useRef } from "react";
 import { BackSide, NearestMipmapLinearFilter, RepeatWrapping } from "three";
 
 export default function Floor() {
-	let diffTexture =
-		"./textures/Concrete/textures/concrete_floor_worn_001_diff_1k.jpg";
-	let displacementTexture =
-		"./textures/Concrete/textures/concrete_floor_worn_001_disp_1k.png";
-	let roughTexture =
-		"./textures/Concrete/textures/concrete_floor_worn_001_rough_1k.jpg";
-
-	[diffTexture, roughTexture, displacementTexture] = useTexture(
-		[diffTexture, roughTexture, displacementTexture],
+	const [diffTexture, roughTexture, displacementTexture] = useTexture(
+		[
+			"./textures/Concrete/textures/concrete_floor_worn_001_diff_1k.jpg",
+			"./textures/Concrete/textures/concrete_floor_worn_001_rough_1k.jpg",
+			"./textures/Concrete/textures/concrete_floor_worn_001_disp_1k.png",
+		],
 		([diffTexture, roughTexture, displacementTexture]) => {
 			diffTexture.wrapS = diffTexture.wrapT = RepeatWrapping;
 			diffTexture.repeat.set(6, 6);
 			roughTexture.wrapS = roughTexture.wrapT = RepeatWrapping;
 			roughTexture.repeat.set(4, 4);
 		},
-		[],
 	);
 
 	return (
@@ -42,19 +38,18 @@ export default function Floor() {
 }
 
 function Cube() {
-	let difTexture = "./textures/Wall/textures/concrete_wall_008_diff_1k.jpg";
-	let displacement = "./textures/Wall/textures/concrete_wall_008_disp_1k.png";
-	let roughTexture =
-		"./textures/Concrete/textures/concrete_floor_worn_001_rough_1k.jpg";
-
 	const box = useRef();
 
 	useEffect(() => {
 		box.current.material.envMapIntensity = 0.3;
 	});
 
-	[difTexture, displacement, roughTexture] = useTexture(
-		[difTexture, roughTexture, displacement],
+	const [difTexture, displacement, roughTexture] = useTexture(
+		[
+			"./textures/Wall/textures/concrete_wall_008_diff_1k.jpg",
+			"./textures/Concrete/textures/concrete_floor_worn_001_rough_1k.jpg",
+			"./textures/Wall/textures/concrete_wall_008_disp_1k.png",
+		],
 		([difTexture, roughTexture]) => {
 			difTexture.wrapS = difTexture.wrapT = RepeatWrapping;
 			difTexture.repeat.set(3, 3);
@@ -63,7 +58,6 @@ function Cube() {
 			roughTexture.wrapS = roughTexture.wrapT = RepeatWrapping;
 			roughTexture.repeat.set(2, 2);
 		},
-		[],
 	);
 
 	return (
