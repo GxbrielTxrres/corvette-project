@@ -40,12 +40,12 @@ export default function Lights() {
 				position={[-2, 1, -0.5]}
 				args={["#ffffff", 0.9, 20, 1, 1, 1]}
 			/>
-			<rectAreaLight
+			{/* <rectAreaLight
 				width={2}
 				height={3}
-				intensity={6}
+				intensity={2}
 				position={[3, -2.5, 2.5]}
-			/>
+			/> */}
 			<ambientLight intensity={0.03} />
 		</group>
 	);
