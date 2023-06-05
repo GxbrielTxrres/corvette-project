@@ -2,35 +2,11 @@ import {
 	Bloom,
 	EffectComposer,
 	BrightnessContrast,
-	Autofocus,
 	N8AO,
 } from "@react-three/postprocessing";
-import { useControls } from "leva";
 import { useMemo } from "react";
 
 export default function Effects() {
-	const {
-		brightness,
-		resScale,
-		contrast,
-		autoEnabled,
-		aoEnabled,
-		bokehScale,
-		...aoProps
-	} = useControls("Effects", {
-		autoEnabled: true,
-		aoEnabled: false,
-		brightness: { value: 0.05, min: 0, max: 1, step: 0.01 },
-
-		contrast: { value: 0.05, min: 0, max: 1, step: 0.01 },
-		bokehScale: { value: 6, min: 0, max: 50, step: 0.1 },
-		resScale: { value: 0.4, min: 0, max: 1, step: 0.01 },
-		aoRadius: { value: 0.2, min: 0, max: 10, step: 0.1 },
-		denoiseRadius: { value: 0.2, min: 0, max: 10, step: 0.1 },
-		intensity: { value: 0.2, min: 0, max: 20, step: 0.1 },
-		// quality: "medium",
-	});
-
 	const effects = useMemo(() => {
 		return (
 			<EffectComposer disableNormalPass multisampling={0}>
@@ -43,28 +19,15 @@ export default function Effects() {
 					luminanceSmoothing={0.4}
 					resolutionScale={0.1}
 				/>
-				{autoEnabled && (
-					<Autofocus
-						mouse
-						focusRange={0.0125}
-						resolutionScale={resScale}
-						bokehScale={bokehScale}
-					/>
-				)}
-				<BrightnessContrast
-					brightness={brightness}
-					contrast={contrast}
-				/>
-				{aoEnabled && (
-					<N8AO
-						// aoRadius={0.2}
-						// intensity={10}
-						// denoiseRadius={1}
-						// quality="performance"
 
-						{...aoProps}
-					/>
-				)}
+				<BrightnessContrast brightness={0.05} contrast={0.05} />
+
+				<N8AO
+					aoRadius={0.5}
+					intensity={2.7}
+					denoiseRadius={5.5}
+					quality="performance"
+				/>
 			</EffectComposer>
 		);
 	}, []);

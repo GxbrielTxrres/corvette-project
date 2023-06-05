@@ -99,13 +99,13 @@ export default function Experience() {
 				position={[0, -1.96, 0]}
 				infiniteGrid
 				cellSize={0.5}
-				cellThickness={0.2}
+				cellThickness={0}
 				sectionSize={3}
-				sectionThickness={0.8}
+				sectionThickness={1.4}
 				sectionColor={[5, 5, 5]}
 				fadeDistance={12}
 			/>
-			{/* <SoftShadows /> */}
+			<SoftShadows />
 			{customize && <CustomizeInterface />}
 			<Env />
 		</>
