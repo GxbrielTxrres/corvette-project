@@ -6,6 +6,7 @@ import {
 	N8AO,
 } from "@react-three/postprocessing";
 import { useControls } from "leva";
+import { useMemo } from "react";
 
 export default function Effects() {
 	const {
@@ -30,35 +31,43 @@ export default function Effects() {
 		// quality: "medium",
 	});
 
-	return (
-		<EffectComposer disableNormalPass multisampling={4}>
-			<Bloom
-				radius={0.5}
-				mipmapBlur
-				intensity={1}
-				levels={2}
-				luminanceThreshold={0.3}
-				luminanceSmoothing={0.4}
-			/>
-			{autoEnabled && (
-				<Autofocus
-					mouse
-					focusRange={0.0125}
-					resolutionScale={resScale}
-					bokehScale={bokehScale}
+	const effects = useMemo(() => {
+		return (
+			<EffectComposer disableNormalPass multisampling={0}>
+				<Bloom
+					radius={0.5}
+					mipmapBlur
+					intensity={1}
+					levels={2}
+					luminanceThreshold={0.3}
+					luminanceSmoothing={0.4}
+					resolutionScale={0.1}
 				/>
-			)}
-			<BrightnessContrast brightness={brightness} contrast={contrast} />
-			{aoEnabled && (
-				<N8AO
-					// aoRadius={0.2}
-					// intensity={10}
-					// denoiseRadius={1}
-					// quality="performance"
+				{autoEnabled && (
+					<Autofocus
+						mouse
+						focusRange={0.0125}
+						resolutionScale={resScale}
+						bokehScale={bokehScale}
+					/>
+				)}
+				<BrightnessContrast
+					brightness={brightness}
+					contrast={contrast}
+				/>
+				{aoEnabled && (
+					<N8AO
+						// aoRadius={0.2}
+						// intensity={10}
+						// denoiseRadius={1}
+						// quality="performance"
 
-					{...aoProps}
-				/>
-			)}
-		</EffectComposer>
-	);
+						{...aoProps}
+					/>
+				)}
+			</EffectComposer>
+		);
+	}, []);
+
+	return <>{effects}</>;
 }

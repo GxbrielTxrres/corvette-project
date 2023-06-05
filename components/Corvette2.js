@@ -75,14 +75,6 @@ export function Model(props) {
 	useEffect(() => {
 		Object.values(materials).forEach((material) => {
 			material.envMapIntensity = 1.4;
-			console.log(material.name);
-			if (
-				material.name !== "Tire_Treads" ||
-				material.name !== "Tire_Sidewall"
-			) {
-				material.roughness = 0.1;
-				material.metalness = 0.33;
-			}
 		});
 	}, []);
 

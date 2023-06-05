@@ -105,7 +105,7 @@ export default function Experience() {
 				sectionColor={[5, 5, 5]}
 				fadeDistance={12}
 			/>
-			<SoftShadows />
+			{/* <SoftShadows /> */}
 			{customize && <CustomizeInterface />}
 			<Env />
 		</>
