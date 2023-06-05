@@ -12,6 +12,7 @@ import {
 	Lightformer,
 	OrbitControls,
 	SoftShadows,
+	AdaptiveDpr,
 } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 

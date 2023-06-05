@@ -3,7 +3,9 @@ import {
 	EffectComposer,
 	BrightnessContrast,
 	N8AO,
+	SMAA,
 } from "@react-three/postprocessing";
+import { EdgeDetectionMode } from "postprocessing";
 import { useMemo } from "react";
 
 export default function Effects() {
@@ -17,11 +19,10 @@ export default function Effects() {
 					levels={2}
 					luminanceThreshold={0.3}
 					luminanceSmoothing={0.4}
-					resolutionScale={0.1}
 				/>
 
 				<BrightnessContrast brightness={0.05} contrast={0.05} />
-
+				<SMAA edgeDetectionMode={EdgeDetectionMode.COLOR} />
 				<N8AO
 					aoRadius={0.5}
 					intensity={2.7}
