@@ -18,7 +18,6 @@ import { useFrame, useThree } from "@react-three/fiber";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Model } from "./Corvette2";
-import { Perf } from "r3f-perf";
 import Env from "./Env";
 
 export default function Experience() {
